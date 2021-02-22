@@ -26,13 +26,14 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Car>>(_messages.CarListed,_carDal.GetAll() );
         }
 
-        public IDataResult<List<Brand>> GetByBranId(int brandId)
+        public IDataResult<List<Car>> GetByBranId(int brandId)
         {
-            //if (brandId!=null)
-            //{
-            //    return new DataResult<List<Brand>>(_messages.BrandById, _carDal.Get(c=>c.BrandId==brandId));
-
-            //}
+            var data = _carDal.GetAll(c => c.BrandId == brandId);
+            if (data != null)
+            {
+               return new SuccessDataResult<List<Car>>(_messages.BrandById, data); ;
+            }
+            return new ErrorDataResult<List<Car>>(_messages.Error);
         }
 
         public IDataResult<Car> GetByCarId(int carId)
