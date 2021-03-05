@@ -12,11 +12,11 @@ namespace DataAccess.Concrete.EntityFramework
         {
             optionsBuilder.UseSqlServer("server=DESKTOP-4DC573S\\SQLEXPRESS;Database=RentalCarContext;Integrated Security=true");
         }
-        DbSet<Car> Cars { get; set; }
-        DbSet<Brand> Brands { get; set; }
-        DbSet<Color> Colors { get; set; }
-        DbSet<User> Users { get; set; }
-        DbSet<Customer> Customers { get; set; }
-        DbSet<Rental> Rentals { get; set; }
+        public DbSet<Car> Cars { get; set; }
+        public DbSet<Brand> Brands { get; set; }
+        public DbSet<Color> Colors { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Rental> Rentals { get; set; }
     }
 }

@@ -24,5 +24,7 @@ namespace Business.Constants
         public static string CarNameInvalid = "Geçersiz Araba ismi";
 
         public static string GetByDailyPrice = "Günlük ücrete göre filtrelenip listelendi";
+
+        public static string GetCarDetail = "Arabalar detaylarına göre listelendi";
     }
 }

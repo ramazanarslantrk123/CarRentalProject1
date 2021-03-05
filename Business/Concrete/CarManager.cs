@@ -3,6 +3,7 @@ using Business.Constants;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -49,7 +50,7 @@ namespace Business.Concrete
                 (a => a.ModelYear >= min && a.ModelYear <= max));
         }
 
-        public IDataResult<List<Car>> GetByBranId(int brandId)
+        public IDataResult<List<Car>> GetByBrandId(int brandId)
         {
             var data = _carDal.GetAll(c => c.BrandId == brandId);
             if (data != null)
@@ -79,7 +80,7 @@ namespace Business.Concrete
             return new ErrorDataResult<List<Car>>(Messages.Error);
         }
 
-        public IDataResult<List<Car>> GetByDailyPrice(short? min, short? max)
+        public IDataResult<List<Car>> GetByDailyPrice(short min, short max)
         {//Kontrollerini sağlamayı unutma bir çok kotrolü var validation eklemeyi unutma !!!
             var data = _carDal.GetAll(p => p.DailyPrice >= min && p.DailyPrice <= max);
             if (data != null)
@@ -87,6 +88,16 @@ namespace Business.Concrete
                 return new SuccessDataResult<List<Car>>(Messages.GetByDailyPrice, data);
             }
             return new ErrorDataResult<List<Car>>(Messages.Error);
+        }
+
+        public IDataResult<List<CarDto>> GetCarDetails()
+        {
+            var data = _carDal.GetCarDetails();
+            if (data !=null)
+            {
+                return new SuccessDataResult<List<CarDto>>(Messages.GetCarDetail, data);
+            }
+            return new ErrorDataResult<List<CarDto>>(Messages.Error);
         }
 
         public IResult Update(Car car)
