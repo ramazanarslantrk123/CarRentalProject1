@@ -1,4 +1,4 @@
-﻿using Core.Utilities;
+﻿using Core.Utilities.Results;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
@@ -12,7 +12,12 @@ namespace Business.Abstract
         IDataResult<List<Car>> GetAll();
         IDataResult<Car> GetByCarId(int carId);
         IDataResult<List<Car>> GetByBranId(int brandId);
-        IDataResult<List<Color>> GetByColorId(int colorId);
+        IDataResult<List<Car>> GetByColorId(int colorId);
+        IDataResult<List<Car>> GetAllByModelYear(int min, int max);
+        IDataResult<List<Car>> GetByDailyPrice(short min, short max);
+        IResult Add(Car car);
+        IResult Delete(Car car);
+        IResult Update(Car car);
 
     }
 }

@@ -16,5 +16,6 @@ namespace Entities.Concrete
         public Brand Brand { get; set; }
         public int ColorId { get; set; }
         public Color Color { get; set; }
+        List<Rental> Rentals { get; set; }
     }
 }
