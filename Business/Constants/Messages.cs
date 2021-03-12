@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Core.Utilities.Security.Jwt;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -26,5 +27,11 @@ namespace Business.Constants
         public static string GetByDailyPrice = "Günlük ücrete göre filtrelenip listelendi";
 
         public static string GetCarDetail = "Arabalar detaylarına göre listelendi";
+        public static string UserNotFound="Kullanıcı Bulunamadı";
+        public static string PasswordError="Şifre Hatalı";
+        public static string SuccessfulLogin = "Sisteme Giriş Başarılı";
+        public static string UserAlreadyExists= "Bu kullanıcı zaten mevcut";
+        public static string UserRegistered = "Kullanıcı başarıyla kaydedildi";
+        public static string AccessTokenCreated="Token başarı ile oluşturuldu";
     }
 }
