@@ -26,7 +26,7 @@ namespace Business.Concrete
         public IResult Add(Car car)
         {
             var result = new CarValidator();
-            if (result != null)
+            if (result == null)
             {
                 _carDal.Add(car);
                 return new SuccessResult(Messages.CarAdded);
