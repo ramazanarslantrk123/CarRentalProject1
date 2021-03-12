@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -19,17 +20,19 @@ namespace Business.Concrete
         {
             _carDal = carDal;
             //_messages = messages;
-            
+
         }
 
         public IResult Add(Car car)
         {
-            if (car.CarName.Length >= 2 && car.DailyPrice > 0)
+            var result = new CarValidator();
+            if (result != null)
             {
                 _carDal.Add(car);
                 return new SuccessResult(Messages.CarAdded);
             }
-                return new ErrorResult(Messages.CarNameInvalid);
+
+            return new ErrorResult(Messages.CarNameInvalid);
         }
 
         public IResult Delete(Car car)
@@ -40,7 +43,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Car>> GetAll()
         {
-            return new SuccessDataResult<List<Car>>(Messages.CarListed,_carDal.GetAll());
+            return new SuccessDataResult<List<Car>>(Messages.CarListed, _carDal.GetAll());
         }
 
         public IDataResult<List<Car>> GetAllByModelYear(int min, int max)
@@ -55,7 +58,7 @@ namespace Business.Concrete
             var data = _carDal.GetAll(c => c.BrandId == brandId);
             if (data != null)
             {
-               return new SuccessDataResult<List<Car>>(Messages.BrandById, data); ;
+                return new SuccessDataResult<List<Car>>(Messages.BrandById, data); ;
             }
             return new ErrorDataResult<List<Car>>(Messages.Error);
         }
@@ -93,7 +96,7 @@ namespace Business.Concrete
         public IDataResult<List<CarDto>> GetCarDetails()
         {
             var data = _carDal.GetCarDetails();
-            if (data !=null)
+            if (data != null)
             {
                 return new SuccessDataResult<List<CarDto>>(Messages.GetCarDetail, data);
             }
@@ -102,7 +105,7 @@ namespace Business.Concrete
 
         public IResult Update(Car car)
         {
-            if(car.CarName.Length>=2 && car.DailyPrice > 0)
+            if (car.CarName.Length >= 2 && car.DailyPrice > 0)
             {
                 _carDal.Update(car);
                 return new SuccessResult(Messages.CarUpdated);

@@ -22,8 +22,10 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getall")]
-        //[Authorize(Roles="Admin")]
-        [Authorize(Roles ="Product.List")]
+        [Authorize(Roles = "admin")]
+        //[Authorize(Roles ="Product.List")]
+
+
         public IActionResult GetAll()
         {
             var data = _carService.GetAll();

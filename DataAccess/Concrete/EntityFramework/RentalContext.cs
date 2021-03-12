@@ -11,7 +11,7 @@ namespace DataAccess.Concrete.EntityFramework
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("server=DESKTOP-4DC573S\\SQLEXPRESS;Database=RentalCarContext;Integrated Security=true");
+            optionsBuilder.UseSqlServer("server=(localdb)\\MSSQLLocalDB;Database=CarRental;Integrated Security=true");
         }
         public DbSet<Car> Cars { get; set; }
         public DbSet<Brand> Brands { get; set; }
